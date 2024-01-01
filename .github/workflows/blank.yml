@@ -26,7 +26,8 @@ jobs:
 
     - name: 下载Amzayotheme
       run: |
-        wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9(202312281830).zip
+        rm -rf nezhaThemeCustom amzayo amzayo*
+        wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9\(202312281830\).zip
         unzip amzayo_template_fin_2.9\(202312281830\).zip -d amzayo_template
         mkdir -p amzayo/resource/template/theme-custom
         cp -r amzayo_template/template/* amzayo/resource/template/theme-custom/
