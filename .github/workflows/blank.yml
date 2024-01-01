@@ -16,7 +16,7 @@ jobs:
     - name: Clone NezhaThemeCustom
       run: git clone https://github.com/kshipeng/nezhaThemeCustom.git
 
-    - name: 制作resource1.tar.gz
+    - name: 制作kshipengTheme.tar.gz
       run: |
         rm -rf nezhaThemeCustom theme resource1.tar.gz resource
         git clone https://github.com/kshipeng/nezhaThemeCustom.git
@@ -24,7 +24,7 @@ jobs:
         cp -r nezhaThemeCustom/template/* resource/template/theme-custom/
         tar czf kshipengTheme.tar.gz resource
 
-    - name: 下载Amzayotheme
+    - name: 制作amzayoTheme.tar.gz
       run: |
         rm -rf nezhaThemeCustom amzayo amzayo* resource
         wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9\(202312281830\).zip
@@ -41,8 +41,9 @@ jobs:
         files: |
           kshipengTheme.tar.gz
           amzayoTheme.tar.gz
-        tag_name: "哪吒美化文件打包"
+        tag_name: "nezhaTheme-page"
         token: ${{ secrets.YOUR_TOKEN }}
         body: |
+          #哪吒美化文件打包
           kshipengTheme.tar.gz：`https://github.com/kshipeng/nezhaThemeCustom`
           amzayoTheme.tar.gz：`https://blog.amzayo.com/index.php/archives/28`
