@@ -39,8 +39,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          resource1.tar.gz
-          resource2.tar.gz
+          kshipengTheme.tar.gz
+          amzayoTheme.tar.gz
         tag_name: "哪吒美化文件打包"
         token: ${{ secrets.YOUR_TOKEN }}
         body: |
