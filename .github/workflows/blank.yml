@@ -40,4 +40,4 @@ jobs:
           resource1.tar.gz
           resource2.tar.gz
         tag_name: ${{ github.sha }}
-        title: Release ${{ github.sha }}
+        token: ${{ secrets.YOUR_TOKEN }}
