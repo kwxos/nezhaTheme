@@ -18,20 +18,22 @@ jobs:
 
     - name: 制作resource1.tar.gz
       run: |
-        rm -rf nezhaThemeCustom theme resource1.tar.gz
+        rm -rf nezhaThemeCustom theme resource1.tar.gz resource
         git clone https://github.com/kshipeng/nezhaThemeCustom.git
-        mkdir -p theme/resource/template/theme-custom
-        cp -r nezhaThemeCustom/template/* theme/resource/template/theme-custom/
-        tar czf resource1.tar.gz theme/resource
+        mkdir -p resource/template/theme-custom
+        cp -r nezhaThemeCustom/template/* resource/template/theme-custom/
+        tar czf kshipengTheme.tar.gz resource
 
     - name: 下载Amzayotheme
       run: |
-        rm -rf nezhaThemeCustom amzayo amzayo*
+        rm -rf nezhaThemeCustom amzayo amzayo* resource
         wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9\(202312281830\).zip
         unzip amzayo_template_fin_2.9\(202312281830\).zip -d amzayo_template
-        mkdir -p amzayo/resource/template/theme-custom
-        cp -r amzayo_template/template/* amzayo/resource/template/theme-custom/
-        tar czf resource2.tar.gz amzayo/resource
+        mkdir -p resource/template/theme-custom
+        mkdir -p resource/static/custom
+        cp -r amzayo_template/template/* resource/template/theme-custom/
+        cp -r amzayo_template/static/* resource/static/custom/
+        tar czf amzayoTheme.tar.gz resource
       
     - name: Publish Release
       uses: softprops/action-gh-release@v1
@@ -39,5 +41,8 @@ jobs:
         files: |
           resource1.tar.gz
           resource2.tar.gz
-        tag_name: "v${{ github.sha }}"
+        tag_name: "哪吒美化文件打包"
         token: ${{ secrets.YOUR_TOKEN }}
+        body: |
+          kshipengTheme.tar.gz：`https://github.com/kshipeng/nezhaThemeCustom`
+          amzayoTheme.tar.gz：`https://blog.amzayo.com/index.php/archives/28`
