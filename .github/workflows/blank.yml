@@ -18,7 +18,7 @@ jobs:
 
     - name: 制作resource1.tar.gz
       run: |
-        wget https://codeload.github.com/kshipeng/nezhaThemeCustom/zip/refs/heads/main/nezhaThemeCustom-main.zip
+        wget https://codeload.github.com/kshipeng/nezhaThemeCustom/zip/refs/heads/main
         unzip nezhaThemeCustom-main.zip .
         mkdir -p resource/template/theme-custom
         cp -r nezhaThemeCustom-main/template/* theme/resource/template/theme-custom/
