@@ -39,5 +39,5 @@ jobs:
         files: |
           resource1.tar.gz
           resource2.tar.gz
-        tag_name: ${{ github.sha }}
+        tag_name: "v${{ github.sha }}"
         token: ${{ secrets.YOUR_TOKEN }}
