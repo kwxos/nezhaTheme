@@ -1,0 +1,39 @@
+name: nezha美化文件
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  clone_download_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Clone NezhaThemeCustom
+      run: git clone https://github.com/kshipeng/nezhaThemeCustom.git
+
+    - name: 制作resource1.tar.gz
+      run: |
+        mkdir -p resource/template/theme-custom
+        cp -r nezhaThemeCustom/template/* theme/resource/template/theme-custom/
+        tar czf resource1.tar.gz theme/resource
+
+    - name: 下载Amzayotheme
+      run: |
+        wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9(202312281830).zip
+        unzip amzayo_template_fin_2.9\(202312281830\).zip -d amzayo_template
+        cp -r amzayo_template/template/* amzayo/resource/template/theme-custom/
+        tar czf resource2.tar.gz amzayo/resource
+      
+    - name: Publish Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          resource1.tar.gz
+          resource2.tar.gz
+        tag_name: ${{ github.sha }}
+        title: Release ${{ github.sha }}
