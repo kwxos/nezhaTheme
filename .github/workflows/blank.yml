@@ -18,16 +18,16 @@ jobs:
 
     - name: 制作resource1.tar.gz
       run: |
-        wget https://codeload.github.com/kshipeng/nezhaThemeCustom/zip/refs/heads/main
-        unzip nezhaThemeCustom-main.zip .
-        mkdir -p resource/template/theme-custom
-        cp -r nezhaThemeCustom-main/template/* theme/resource/template/theme-custom/
+        git clone https://github.com/kshipeng/nezhaThemeCustom.git
+        mkdir -p theme/resource/template/theme-custom
+        cp -r nezhaThemeCustom/template/* theme/resource/template/theme-custom/
         tar czf resource1.tar.gz theme/resource
 
     - name: 下载Amzayotheme
       run: |
         wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9(202312281830).zip
         unzip amzayo_template_fin_2.9\(202312281830\).zip -d amzayo_template
+        mkdir -p amzayo/resource/template/theme-custom
         cp -r amzayo_template/template/* amzayo/resource/template/theme-custom/
         tar czf resource2.tar.gz amzayo/resource
       
