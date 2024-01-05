@@ -6,6 +6,7 @@ kshipengTheme.tar.gz：https://github.com/kshipeng/nezhaThemeCustom
 
 amzayoTheme.tar.gz：https://blog.amzayo.com/index.php/archives/28
 
+### ssh到容器，然后运行下面脚本
 #### docker主题替换脚本
 
 kshipeng大佬-->[dome](https://tz.euser.cf/)
