@@ -27,8 +27,8 @@ jobs:
     - name: 制作amzayoTheme.tar.gz
       run: |
         rm -rf nezhaThemeCustom amzayo amzayo* resource
-        wget https://cdn.amzayo.top/static/public/amzayo_template_fin_2.9\(202312281830\).zip
-        unzip amzayo_template_fin_2.9\(202312281830\).zip -d amzayo_template
+        wget https://cdn.amzayo.top/static/public/amzayo_template_fin_net.zip
+        unzip amzayo_template_fin_net.zip -d amzayo_template
         mkdir -p resource/template/theme-custom
         mkdir -p resource/static/custom
         cp -r amzayo_template/template/* resource/template/theme-custom/
