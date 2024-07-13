@@ -12,11 +12,11 @@ amzayoTheme.tar.gz：https://blog.amzayo.com/index.php/archives/28
 kshipeng大佬-->[demo](https://tz.euser.cf/)
 
 ```
-wget -N https://github.com/kwxos/nezhaTheme/releases/download/nezhaTheme-page/kshipengTheme.tar.gz && tar -xzvf kshipengTheme.tar.gz && rm -rf kshipengTheme.tar.gz && ./backup.sh
+wget -N https://github.com/kwxos/nezhaTheme/releases/download/nezhaTheme-page/kshipengTheme.tar.gz && tar -xzvf kshipengTheme.tar.gz && rm -rf kshipengTheme.tar.gz && supervisorctl restart nezha
 ```
 
 amzayo大佬-->[demo](https://tz.amzayo.top/)
 
 ```
-wget -N https://github.com/kwxos/nezhaTheme/releases/download/nezhaTheme-page/amzayoTheme.tar.gz && tar -xzvf amzayoTheme.tar.gz && rm -rf amzayoTheme.tar.gz && ./backup.sh
+wget -N https://github.com/kwxos/nezhaTheme/releases/download/nezhaTheme-page/amzayoTheme.tar.gz && tar -xzvf amzayoTheme.tar.gz && rm -rf amzayoTheme.tar.gz && supervisorctl restart nezha
 ```
