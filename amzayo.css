@@ -1,0 +1,728 @@
+<script>
+    // 动画
+    window.onload = function () {
+        $('.nb-menu').css('visibility', 'visible');
+        $('.footer').css('visibility', 'visible');
+        $('.nb-menu .right.menu,.nb-menu .item')
+            .transition({
+                animation: 'fade down in',
+                interval: 200,
+            });
+        $('.footer .container b,.footer .container small')
+            .transition({
+                animation: 'fade up in',
+                interval: 200,
+            });
+        $('.accordion,.cards .card,table,.table tr,.service-status h2')
+            .transition({
+                animation: 'scale in',
+                interval: 150
+            });
+    }
+</script>
+<style>
+    :root {
+        --popup-filter: blur(2px);
+        --lc-color-light: rgba(235, 235, 235, 0.8);
+        --bc-color-light: rgba(235, 235, 235, 0.4);
+        --the-color-light: rgba(235, 235, 235, 0.6);
+        --he-color-light: rgba(235, 235, 235, 0.8);
+        --message-color-light: rgb(22, 22, 22, 1);
+        --popup-color-light:rgba(235, 235, 235, 0.6);
+
+        --bc-color-dark: rgba(0, 0, 0, 0.4);
+        --lc-color-dark: rgba(55, 55, 55, 0.8);
+        --the-color-dark: rgba(35, 35, 35, 0.3);
+        --he-color-dark: rgba(35, 35, 35, 0.8);
+        --message-color-dark: rgb(235, 235, 235, 0.8);
+        --popup-color-dark:rgba(78, 78, 78, 0.6);
+
+
+        /* 注释上面一段颜色代码并取消下面注释的代码开启毛玻璃效果（图形性能开销巨大，可能导致掉帧） */
+
+        /* --popup-filter: blur(10px);
+        --bb: blur(15px) brightness(110%);
+        --lc-color-light: rgba(255, 255, 255, 0.7);
+        --bc-color-light: rgba(255, 255, 255, 0.1);
+        --the-color-light: rgba(255, 255, 255, 0.4);
+        --he-color-light: rgba(255, 255, 255, 0.5);
+        --message-color-light: rgb(22, 22, 22, 1); 
+        --popup-color-light:rgba(235, 235, 235, 0.6);
+
+        --bc-color-dark: rgba(0, 0, 0, 0.3);
+        --lc-color-dark: rgba(55, 55, 55, 0.8);
+        --the-color-dark: rgba(70, 70, 70, 0.1);
+        --he-color-dark: rgba(35, 35, 35, 0.7);
+        --message-color-dark: rgb(235, 235, 235, 0.8);
+        --popup-color-dark:rgba(78, 78, 78, 0.6); */
+        
+    }
+
+    /* 暗色模式适配 */
+    @media (prefers-color-scheme: dark) {
+        *:not(.icon, i) {
+            color: rgba(220, 220, 220, 0.95) !important;
+        }
+
+        .ui.menu .ui.dropdown .menu>.item {
+            color: rgba(220, 220, 220, 0.95) !important;
+        }
+
+
+        .ui .cards>.card {
+            background-color: var(--lc-color-dark) !important;
+            border-color: var(--lc-color-dark) !important;
+        }
+
+        .ui .cards>.card i:not(.flag) {
+            filter: saturate(60%) !important;
+        }
+
+
+        .ui.table thead th,
+        .ui.table thead {
+            background-color: var(--the-color-dark) !important;
+        }
+
+        .ui.table {
+            background-color: none !important;
+        }
+
+        .ui.large.menu,
+        .right.menu .menu,
+        .service-status h2,
+        .footer,
+        .floating.message.warning,
+        .floating.message.success {
+            background-color: var(--he-color-dark) !important;
+        }
+
+        .floating.message.warning,
+        .floating.message.success {
+            color: var(--message-color-dark) !important;
+        }
+
+        #app .ui.fluid.accordion,
+        .table {
+            background-color: var(--bc-color-dark) !important;
+        }
+
+        .ui.content.popup {
+            background-color: var(--popup-color-dark) !important;
+        }
+        .ui.content.popup:before{
+            background-color: var(--popup-color-dark) !important;
+        }
+
+        .ui.progress small,
+        td:not(.button):not(.bar):not(:has(.button, .bar)):not(:has(> small)) {
+            filter: brightness(115%);
+        }
+
+        .ui.progress .bar,
+        .nb-container .ui.icon.button,
+        .service-status .delay-today>i {
+            filter: brightness(85%);
+        }
+
+        .ui.button:hover {
+            filter: brightness(100%) !important;
+        }
+
+        .ui.popup:before {
+            background-color: var(--popup-color-dark) !important;
+            box-shadow: 0px 0px 0 0 #ffffff !important;
+        }
+
+        .amzayo-custom-button {
+            background-color: #4d4d4d8f !important;
+            color: rgba(178, 178, 178, 0.95) !important;
+            border: 2px solid #292929ae !important;
+        }
+
+        .amzayo-custom-button:hover {
+            background-color: #ff8457 !important;
+            color: #ffffffbd !important;
+            font-weight: bolder !important;
+        }
+
+        i.amzayo-secondary-font {
+            color: #727272ae !important;
+        }
+
+        .ui.popup {
+            background-color: rgba(78, 78, 78, 1) !important;
+        }
+
+        .ui.menu .item:before {
+            background: rgba(125, 125, 125, 0.15);
+        }
+
+        .ui.menu .active.item {
+            background: rgba(10, 10, 10, 0.2);
+        }
+
+        .ui.menu:not(.secondary):not(.text):not(.tabular):not(.borderless)>.container>.item:not(.right):not(.borderless):first-child {
+            border-left: 1px solid rgba(125, 125, 125, 0.15);
+        }
+    }
+
+    /* 屏幕适配 */
+
+    @media (min-width: 320px) {
+        .ui-alerts.top-center {
+            margin-left: 0px !important;
+            left: 50%;
+            transform: translate(-50%, -0%);
+        }
+    }
+
+    @media (min-width: 766px) {
+        .ui.container {
+            width: 80%;
+        }
+
+        /* 表格样式 */
+        .ui.table thead th {
+            backdrop-filter:var(--bb);
+            background-color: var(--the-color-light);
+        }
+
+        thead tr :first-child {
+            border-radius: 1rem 0 0 1rem !important;
+        }
+
+        thead tr :last-child {
+            border-radius: 0 1rem 1rem 0 !important;
+        }
+
+        /* 小卡片 */
+        .ui .cards>.card {
+            border-radius: 1rem;
+            border: none !important;
+            background-color: var(--lc-color-light);
+            padding: .25rem .25rem !important;
+            margin: .5rem .3rem !important;
+            visibility: hidden;
+        }
+
+        /* 小卡片头部调整 */
+        .ui.card>.content>.header,
+        .ui.cards>.card>.content>.header {
+            padding-top: 0;
+            display: flex;
+            color: rgba(0, 0, 0, .85);
+            align-items: center;
+            padding-bottom: .2em;
+            border-bottom: 1px solid rgba(0, 0, 0, .2);
+        }
+
+        .header_info {
+            font-size: 1rem !important;
+            line-height: 1rem !important;
+            margin-top: .3rem !important;
+            padding-right: .38rem !important;
+        }
+    }
+
+    @media (max-width: 766px) {
+
+        /* 表格样式 */
+        .ui.table thead {
+            backdrop-filter:var(--bb);
+            background-color: var(--the-color-light);
+        }
+
+        thead {
+            border-radius: 1rem !important;
+        }
+
+        thead tr {
+            padding: 0 !important;
+        }
+
+        /* 小卡片 */
+        .ui .cards>.card {
+            border-radius: 1rem;
+            background-color: var(--lc-color-light);
+            outline: none !important;
+            visibility: hidden;
+        }
+
+        /* 小卡片头部调整 */
+        .ui.card>.content>.header,
+        .ui.cards>.card>.content>.header {
+            padding-top: 0.5rem;
+            display: flex;
+            color: rgba(0, 0, 0, .85);
+            align-items: center;
+            padding-bottom: .2em;
+            border-bottom: 1px solid rgba(0, 0, 0, .2);
+        }
+
+        .header_info {
+            font-size: 1rem !important;
+            line-height: 1rem !important;
+            padding-top: -.1rem !important;
+            padding-right: .38rem !important;
+        }
+    }
+
+    /* 自定义字体 */
+    @font-face {
+        font-family: 'Harmony Hans';
+        src: url(https://registry.npmmirror.com/kwxoswoff20jscss/1.0.1/files/fonts/HarmonyOSHans-Medium.woff2) format('woff2');
+    }
+
+    * {
+        font-family: 'Harmony Hans';
+    }
+
+    *:not(.content) {
+        transition: all .2s;
+    }
+
+    /* 背景图片 */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        background: url(https://imgapi.cn/bing.php) center/cover no-repeat;
+    }
+
+    /* 初始隐藏元素，用于动画效果，关闭动画效果请删除 */
+    .nb-menu,
+    .nb-menu .right.menu,
+    .nb-menu .item,
+    .accordion,
+    .footer,
+    .footer .container b,
+    .footer .container small,
+    .table,
+    .table tr,
+    .service-status h2 {
+        visibility: hidden;
+    }
+
+    /* 菜单颜色 */
+    .ui.large.menu {
+        backdrop-filter:var(--bb);
+        background-color: var(--he-color-light);
+        border-radius: 0 0 1rem 1rem !important;
+    }
+
+    .ui.menu .item:last-child {
+        padding: 0 1.142em !important;
+    }
+
+    /* 登录按钮区域 */
+    .ui.simple.dropdown {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 登录之后的下拉菜单 */
+    .right.menu .menu {
+        border-radius: 0 0 1rem 1rem !important;
+        position: absolute;
+        top: 0 !important;
+        background-color: var(--he-color-light);
+        padding: 0 0.3em !important;
+    }
+
+    /* 登录按钮颜色（需要使用配套自定义主题） */
+    .amzayo-custom-button {
+        backdrop-filter:var(--bb);
+        background-color: #ffffff8f;
+        color: #000000cf;
+        border: 2px solid #ebe1d9;
+        border-radius: 1rem;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+    .amzayo-custom-button:hover {
+        background-color: #ff8457;
+        color: #ffffffbd;
+        font-weight: bolder;
+    }
+
+    /* 大卡片 */
+    #app .ui.fluid.accordion {
+        backdrop-filter:var(--bb);
+        background-color: var(--bc-color-light);
+        border-radius: 1rem;
+    }
+
+    #app :last-child.accordion {
+        margin-bottom: 0 !important;
+    }
+
+    /* 小卡片靠哪个方向对齐 */
+    .cards {
+        justify-content: center;
+    }
+
+    .ui.card,
+    .ui.cards>.card {
+        box-shadow: none !important;
+    }
+
+    /* 取消下方注释调整下面的数字以调整卡片宽度（非移动端页面，移动端页面让它自适应吧） */
+    /* .ui.card,
+    .ui.cards>.card {
+        width: 300px !important;
+    } */
+
+    /* 小卡片右上角的图标 */
+
+    i.amzayo-secondary-font {
+        margin-left: auto;
+        color: rgba(255, 153, 1, 0.65);
+    }
+
+    /* 头部配置信息样式 */
+    .header_info i {
+        margin-top: .25rem;
+        margin-right: .3rem;
+        margin-left: .3rem;
+    }
+
+    /* 更多信息卡片 */
+    .ui.content.popup {
+        backdrop-filter:var(--popup-filter);
+        border: none !important;
+        border-radius: 1rem;
+        margin: 0;
+        padding: 1em !important;
+        background-color: var(--popup-color-light);
+        width: max-content;
+        height: max-content;
+    }
+
+    .ui.popup {
+        border: none !important;
+    }
+
+    /* 小三角 */
+    .ui.content.popup:before {
+        background-color: var(--popup-color-light);
+        z-index: 9999 !important;
+        border: none !important;
+        box-shadow: 0px 0px 0 0 #ffffff !important;
+    }
+
+    .ui.bottom.popup:before {
+        clip-path: polygon(0 0, 100% 0, 50% 50%, 0 100%);
+    }
+
+    .ui.top.popup:before {
+        clip-path: polygon(100% 100%, 0% 100%, 100% 0);
+    }
+
+    /* 进度条圆角和颜色 */
+    .ui.progress {
+        border-radius: 50rem;
+        height: 1.5rem;
+    }
+
+    /* 卡片内间距，如需调整小卡片高度，可以修改下面的2rem的数字 */
+    .status.cards .wide.column {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: 2rem !important;
+    }
+
+    .bi::before,
+    [class^="bi-"]::before,
+    [class*=" bi-"]::before {
+        vertical-align: middle;
+        margin-bottom: .2rem;
+    }
+
+    /* 状态进度条 */
+    .card .bar {
+        height: 1.5rem;
+    }
+
+    .card .bar small {
+        vertical-align: super;
+        line-height: 1.5rem;
+    }
+
+    .card .ui.progress .bar {
+        min-width: 1.8em !important;
+        border-radius: 13px;
+        line-height: 1.65em;
+        height: 1.5rem;
+    }
+
+    table .ui.progress .bar {
+        border-radius: 13px;
+    }
+
+    /* 正常状态进度条颜色 */
+    .nb-container .ui.progress.fine .bar {
+        background-image: linear-gradient(to right, rgba(125, 252, 0, 0.6), rgba(50, 205, 50, 0.6));
+    }
+
+    /*有点累状态进度条颜色 */
+    .nb-container .ui.progress.warning .bar {
+        background-image: linear-gradient(to right, rgba(255, 215, 0, 0.6), rgba(255, 125, 80, 0.6));
+    }
+
+    /*高负载状态进度条颜色 */
+    .nb-container .ui.progress.error .bar {
+        background-image: linear-gradient(to right, rgba(255, 160, 120, 0.6), rgba(255, 70, 0, 0.6));
+    }
+
+    /* 离线状态进度条颜色 */
+    .ui.progress.offline .bar {
+        background-color: #000;
+    }
+
+    /* 上传下载图标颜色 */
+    i.arrow.alternate.circle.down.outline.icon {
+        color: rgb(0, 157, 255);
+    }
+
+    i.arrow.alternate.circle.up.outline.icon {
+        color: #ff0000;
+    }
+
+    /*服务状态*/
+    .nb-container .service-status .good {
+        background: rgba(50, 205, 50, 0.75);
+    }
+
+    .nb-container .service-status .warning {
+        background: rgba(250, 155, 40, 0.75);
+    }
+
+    .nb-container .service-status .danger {
+        background: rgba(255, 35, 0, 0.75);
+    }
+
+    /* 服务页面大表格背景 */
+    .table {
+        backdrop-filter:var(--bb);
+        background-color: var(--bc-color-light);
+        border-radius: 1rem !important;
+    }
+
+    .ui.table {
+        background-color: var(--bc-color-light);
+    }
+
+    .ui.button:not(.good):not(.warning):not(.danger):hover {
+        background: #e0e1e2 none;
+    }
+
+    .ui.button:hover {
+        filter: brightness(0.9);
+    }
+
+    .service-status .delay-today {
+        vertical-align: sub;
+    }
+
+    /* 循环流量统计标题 */
+    .service-status h2 {
+        backdrop-filter:var(--bb);
+        background-color: var(--he-color-light);
+        border-radius: 1rem !important;
+        margin: 0 !important;
+    }
+
+    /*底部*/
+    .footer {
+        backdrop-filter:var(--bb);
+        background-color: var(--he-color-light);
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        border-radius: 1rem 1rem 0 0 !important;
+    }
+
+    .ui.inverted.segment,
+    .ui.primary.inverted.segment {
+        background-color: var(--he-color-light);
+    }
+
+    .footer .container,
+    .footer .container a {
+        color: var(--message-color-light);
+    }
+
+    .footer .container a:hover {
+        color: #ff8457 !important;
+    }
+
+    /* 提示消息 */
+    .floating.message.success {
+        backdrop-filter: blur(15px) brightness(110%);
+        background-color: var(--he-color-light);
+        border: 3px solid rgba(255.255.255.0.5);
+        border-radius: 1rem !important;
+        color: var(--message-color-light);
+        box-shadow: 0 0 15px rgba(1, 132, 255, 0.65);
+    }
+
+    .floating.message.success .header {
+        color: var(--message-color-light);
+    }
+
+    .floating.message.warning {
+        backdrop-filter: blur(15px) brightness(110%);
+        background-color: var(--he-color-light);
+        border: 1px solid rgba(255.255.255.0.5);
+        border-radius: 1rem !important;
+        color: var(--message-color-light);
+        box-shadow: 0 0 15px rgba(255, 153, 1, 0.65);
+    }
+
+    .floating.message.warning .header {
+        color: var(--message-color-light);
+    }
+
+    .cpucontent {
+        display: inline-block;
+    }
+
+    .rollanimation {
+        animation: scroll 10s cubic-bezier(.2, 0, .8, 1) infinite;
+    }
+
+    @keyframes scroll {
+
+        0% {
+            transform: translateX(0%);
+        }
+
+        30% {
+            transform: translateX(0%);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+
+    }
+
+
+    /*
+    
+    以下样式为部分原版主题样式，由于原版主题样式有些强制性，不方便二次修改，故拿出来
+    
+    */
+
+    .ui.mini.message {
+        width: 17rem;
+    }
+
+    .ui-alerts {
+        padding: 23px 0 !important;
+    }
+
+    td {
+        word-wrap: break-word;
+        word-break: break-all;
+    }
+
+    .nb-container {
+        padding-top: 75px;
+        min-height: 100vh;
+        padding-bottom: 65px;
+        margin-bottom: -47px;
+    }
+
+    #app .ui.fluid.accordion {
+        margin-bottom: 1rem;
+    }
+
+    .login.nb-container {
+        display: flex;
+        align-items: center;
+        padding-top: unset;
+    }
+
+    .login.nb-container>.grid {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .login.nb-container>.grid .column {
+        max-width: 450px;
+    }
+
+    .status.cards .flag {
+        margin-right: 0 !important;
+    }
+
+    .status.cards .header>.info.icon {
+        float: right;
+        margin-right: 0;
+    }
+
+    .status.cards .wide.column {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: 2rem !important;
+    }
+
+    .status.cards .three.wide.column {
+        padding-right: 0 !important;
+    }
+
+    .status.cards .wide.column:nth-child(1) {
+        margin-top: 1rem !important;
+    }
+
+    .status.cards .wide.column:nth-child(2) {
+        margin-top: 1rem !important;
+    }
+
+    .status.cards .description {
+        padding-bottom: 1rem !important;
+    }
+
+    .status.cards .ui.content.popup {
+        min-width: 250px;
+    }
+
+    .status.cards .outline.icon {
+        margin-right: 0 !important;
+    }
+
+    .ui.progress .bar {
+        min-width: 1.26em !important;
+        text-align: right;
+        padding-right: 0.4em;
+        line-height: 1.75em;
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 700;
+        max-width: 100% !important;
+    }
+
+    .service-status .delay-today {
+        display: flex;
+        align-items: center;
+    }
+
+    .service-status .delay-today>i {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        border-radius: 0.6em;
+        background-color: grey;
+        margin-right: 0.3em;
+    }
+</style>
